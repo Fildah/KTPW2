@@ -4,6 +4,7 @@ const auth = require('../middleware/auth')
 
 const router = new express.Router()
 
+// Create blog
 router.post('/blogs/create', auth, async (req, res) => {
     const blog = new Blog({
         ...req.body,
@@ -30,6 +31,7 @@ router.post('/blogs/create', auth, async (req, res) => {
     }
 })
 
+// Get public blogs
 router.get('/', async (req, res) => {
     try {
         const blogs = await Blog.find({private: false, active:true})
@@ -56,6 +58,7 @@ router.get('/', async (req, res) => {
     }
 })
 
+// Get all blogs that user can access (public + private of user)
 router.get('/blogs/me', auth, async (req, res) => {
     try {
         const blogs = await Blog.find({$and:[{$or:[{author:req.user._id},{private:false}]},{active:true}]})
@@ -84,6 +87,7 @@ router.get('/blogs/me', auth, async (req, res) => {
     }
 })
 
+// Get detail of blog
 router.get('/blogs/:id', auth, async (req, res) =>{
     try {
         const blog = await Blog.findOne({_id:req.params.id, author:req.user._id})
@@ -114,6 +118,7 @@ router.get('/blogs/:id', auth, async (req, res) =>{
     }
 })
 
+// Update blog
 router.patch('/blogs/:id', auth, async (req, res) =>{
     const updates = Object.keys(req.body)
     const allowedUpdates = ['title', 'blogpost', 'private']
@@ -158,6 +163,7 @@ router.patch('/blogs/:id', auth, async (req, res) =>{
     }
 })
 
+// Delete blog
 router.delete('/blogs/:id', auth, async (req, res) =>{
     try {
         const blog = await Blog.findByIdAndUpdate({_id:req.params.id, author:req.user._id})

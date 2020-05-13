@@ -4,6 +4,7 @@ const auth = require('../middleware/auth')
 
 const router = new express.Router()
 
+// Registration site
 router.get('/users/create', async (req, res) => {
     try {
         res.render('registration.hbs', {
@@ -21,6 +22,7 @@ router.get('/users/create', async (req, res) => {
     }
 })
 
+// Create user
 router.post('/users/create', async (req, res) => {
     const user = new User(req.body)
     try {
@@ -45,7 +47,7 @@ router.post('/users/create', async (req, res) => {
     }
 })
 
-
+// Login user
 router.post('/users/login', async (req, res) => {
     try {
         const user = await User.findByCredentials(req.body.email, req.body.password)
@@ -69,7 +71,7 @@ router.post('/users/login', async (req, res) => {
     }
 })
 
-
+// Logout user
 router.post('/users/logout', auth, async (req, res) => {   
     try {
         req.user.tokens = req.user.tokens.filter((token) => {
@@ -100,7 +102,7 @@ router.post('/users/logout', auth, async (req, res) => {
     }
 })
 
-
+// Logout user from all devices
 router.post('/users/logoutAll', auth, async (req, res) => {
     try {
         req.user.tokens = []
@@ -129,6 +131,7 @@ router.post('/users/logoutAll', auth, async (req, res) => {
     }
 })
 
+// User detail page
 router.get('/users/me', auth, async (req, res) => {
     const user = await User.findById({_id:req.user._id})
     try {
@@ -151,7 +154,7 @@ router.get('/users/me', auth, async (req, res) => {
     }
 })
 
-
+// Update user profile
 router.patch('/users/me', auth, async (req, res) => {
     const updates = Object.keys(req.body)
     const allowedUpdates = ['name', 'email', 'password']
@@ -187,7 +190,7 @@ router.patch('/users/me', auth, async (req, res) => {
     }
 })
 
-
+// Delete user
 router.delete('/users/me', auth, async (req, res) => {
     try {
         const user = await User.findByIdAndDelete({_id:req.user._id})
