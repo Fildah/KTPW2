@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>{{title}}</title>
+  </head>
+  <body>
+      {{>header}}
+      {{>registered_user}}
+      {{#if edit}}
+      <form action="Edit blog">
+        <label for="blogtitle">Blog title:</label>
+        <br>
+        <input type="text" name="blogtitle" id="blogtitle" value="{{blogtitle}}">
+        <br>
+        <label for="blogpost">Blog post:</label>
+        <br>
+        <input type="text" name="blogpost" id="blogpost" value="{{blogpost}}">
+        <br>
+        <label for="private">Private:</label>
+        {{#if private}}
+        <input type="checkbox" name="private" id="private" checked="checked">
+        {{else}}
+        <input type="checkbox" name="private" id="private">
+        {{/if}}
+        <br>
+        <button>Edit</button>
+      </form>
+      {{/if}}
+      {{#if status}}
+      <p>Blog title: {{blogtitle}}</p>
+      <p>Blog post: {{blogpost}}</p>
+      <label for="private">Private:</label>
+      {{#if private}}
+      <input type="checkbox" name="private" id="private" checked="checked" readonly="">
+      {{else}}
+      <input type="checkbox" name="private" id="private" readonly="">
+      {{/if}}
+      {{/if}}
+      {{>footer}}
+  </body>
+</html>

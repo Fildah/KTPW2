@@ -1,0 +1,465 @@
+{
+	"info": {
+		"_postman_id": "c8c2f5f6-b22b-45d6-8f75-03c24c06d1bb",
+		"name": "Bloger API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User management",
+			"item": [
+				{
+					"name": "Create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Filip\",\n    \"email\": \"filip@hans.cz\",\n    \"password\": \"12345pass\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/users/create",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"create"
+							]
+						},
+						"description": "Vytvoří uživatele při předání jména, emailu, a hesla."
+					},
+					"response": []
+				},
+				{
+					"name": "Login user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"filip@hans.cz\",\n    \"password\": \"12345pass\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/users/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"login"
+							]
+						},
+						"description": "Přihlásí uživatele při předání emailu a hesla."
+					},
+					"response": []
+				},
+				{
+					"name": "Lougout user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWI2ZmU4OWZlNjYzZTBhMGM1NDBkMmUiLCJpYXQiOjE1ODkwNTE5MDV9.2DBrreYXYuyO7C0P3RaCh_Z1HBMVA2k3F6nkw7u5xBk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/users/logout",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"logout"
+							]
+						},
+						"description": "Odhlásí uživatele, pro autentizaci je potřeba předat token,předaný token se stává nevalidním."
+					},
+					"response": []
+				},
+				{
+					"name": "Lougout user everywhere",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWI2ZmU4OWZlNjYzZTBhMGM1NDBkMmUiLCJpYXQiOjE1ODkwNTE5MDV9.2DBrreYXYuyO7C0P3RaCh_Z1HBMVA2k3F6nkw7u5xBk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/users/logoutAll",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"logoutAll"
+							]
+						},
+						"description": "Odhlásí uživatele ze všech zařízení, pro autentizaci je potřeba předat token, všechny tokeny se stávají nevalidní."
+					},
+					"response": []
+				},
+				{
+					"name": "Get user detail",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWJiZmM1MmM2MmFlNDA3YzBkNDg2NDIiLCJpYXQiOjE1ODkzNzgxMzF9.7jICeSUX22PsNUcmDzVg0CzDPQ2xbnMsJuqZFB3UPdA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/users/me",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"me"
+							]
+						},
+						"description": "Zobrazí detail přihláseného uživatele, pro autentizaci je potřeba předat token."
+					},
+					"response": []
+				},
+				{
+					"name": "Update user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWJiZmM1MmM2MmFlNDA3YzBkNDg2NDIiLCJpYXQiOjE1ODkzNzgxMzF9.7jICeSUX22PsNUcmDzVg0CzDPQ2xbnMsJuqZFB3UPdA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\":\"filip.hans@hans.cz\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/users/me",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"me"
+							]
+						},
+						"description": "Upraví data uživatele, pro autentizaci je potřeba předat token,změnit jde jméno, email, heslo."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWI4NDI5ZTI4NjU5NTQzNjA1MGU3ZjEiLCJpYXQiOjE1ODkyMjUwODB9.kdzMSnYv3dgT0NauMUHenD_LWTZcgJAd6UNIURsdWnI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/users/me",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"me"
+							]
+						},
+						"description": "Smaže uživatele, pro autentizaci je potřeba předat token,uživatel je vymazán z DB včetně všech jeho příspěvků, akce je nevratná."
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Blog management",
+			"item": [
+				{
+					"name": "Create private blog",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWJiZmM1MmM2MmFlNDA3YzBkNDg2NDIiLCJpYXQiOjE1ODkzNzgxMzF9.7jICeSUX22PsNUcmDzVg0CzDPQ2xbnMsJuqZFB3UPdA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"blogtitle\":\"Privatni blog3\",\n\t\"blogpost\":\"Toto je prvni privatni blog ktery pisu\",\n\t\"private\":true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/blogs/create",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"blogs",
+								"create"
+							]
+						},
+						"description": "Vytvoří privátní příspěvek, pro autentizaci je potřeba předat token, k vytvoření je potřeba předat blogtitle, blogpost a nepovinně zda je příspěvek privátní private."
+					},
+					"response": []
+				},
+				{
+					"name": "Create public blog",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWJiZmM1MmM2MmFlNDA3YzBkNDg2NDIiLCJpYXQiOjE1ODkzNzgxMzF9.7jICeSUX22PsNUcmDzVg0CzDPQ2xbnMsJuqZFB3UPdA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"blogtitle\":\"Verejny blog3\",\n\t\"blogpost\":\"blog blog blog vlog\",\n\t\"private\":false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/blogs/create",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"blogs",
+								"create"
+							]
+						},
+						"description": "Vytvoří privátní příspěvek, pro autentizaci je potřeba předat token, k vytvoření je potřeba předat blogtitle, blogpost a nepovinně zda je příspěvek privátní private."
+					},
+					"response": []
+				},
+				{
+					"name": "Get public blogs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								""
+							]
+						},
+						"description": "Zobrazí všechny veřejné příspěvky, k zobrazení není potřeba mít token."
+					},
+					"response": []
+				},
+				{
+					"name": "Get all blogs",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWJiZmM1MmM2MmFlNDA3YzBkNDg2NDIiLCJpYXQiOjE1ODkzNzgxMzF9.7jICeSUX22PsNUcmDzVg0CzDPQ2xbnMsJuqZFB3UPdA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/blogs/me",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"blogs",
+								"me"
+							]
+						},
+						"description": "Zobrazí všechny příspěvky ke kterým má uživatel oprávnění, pro autentizaci je potřeba předat token."
+					},
+					"response": []
+				},
+				{
+					"name": "Get blog by ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWJiZmM1MmM2MmFlNDA3YzBkNDg2NDIiLCJpYXQiOjE1ODkzNzgxMzF9.7jICeSUX22PsNUcmDzVg0CzDPQ2xbnMsJuqZFB3UPdA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/blogs/5ebbfc7ac62ae407c0d48644",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"blogs",
+								"5ebbfc7ac62ae407c0d48644"
+							]
+						},
+						"description": "Zobrazí detail příspěvku, pro autentizaci je potřeba předat token."
+					},
+					"response": []
+				},
+				{
+					"name": "Update blog by ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWJiZmM1MmM2MmFlNDA3YzBkNDg2NDIiLCJpYXQiOjE1ODkzNzgxMzF9.7jICeSUX22PsNUcmDzVg0CzDPQ2xbnMsJuqZFB3UPdA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"private\":false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/blogs/5ebbfc7ac62ae407c0d48644",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"blogs",
+								"5ebbfc7ac62ae407c0d48644"
+							]
+						},
+						"description": "Upraví příspěvek, pro autentizaci je potřeba předat token, upravit je možné blogtitle, blogpost a private."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete blog by ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWJiZmM1MmM2MmFlNDA3YzBkNDg2NDIiLCJpYXQiOjE1ODkzNzgxMzF9.7jICeSUX22PsNUcmDzVg0CzDPQ2xbnMsJuqZFB3UPdA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/blogs/5ebbfc7ac62ae407c0d48644",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"blogs",
+								"5ebbfc7ac62ae407c0d48644"
+							]
+						},
+						"description": "Smaže příspěvek, pro autentizaci je potřeba předat token, akce je permanentní pro uživatele, administrátor může v DB změnit zpět příspěvek na aktivní v případě chybného smazání ze starny uživatele."
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
